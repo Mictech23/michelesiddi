@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michele Siddi — IT Expert, Software Engineer, Cybersecurity Specialist</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700|Montserrat:700|Poppins:700|Fira+Code:400,700|Nunito:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1864ab;
+            --secondary: #f8fbff;
+            --accent: #00b4d8;
+            --accent2: #ffbe3b;
+            --dark: #181a2a;
+            --light: #fff;
+            --danger: #db5461;
+            --success: #44b984;
+            --radius: 22px;
+            --shadow: 0 8px 36px rgba(24,100,171,0.13), 0 2px 12px rgba(0,0,0,0.08);
+            --glass: rgba(255,255,255,0.7);
+            --frost: blur(7px);
+            --gradient: linear-gradient(100deg, #1864ab 60%, #00b4d8 100%);
+            --gradient-rev: linear-gradient(90deg, #00b4d8, #1864ab);
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Nunito', 'Roboto', Arial, sans-serif;
+            margin: 0;
+            background: radial-gradient(circle at 70% 10%, #e7f6ff 0%, #f8fbff 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            transition: background 0.3s, color 0.3s;
+        }
+        /* DARK MODE */
+        body.dark {
+            background: radial-gradient(circle at 70% 10%, #151a2a 0%, #222a3f 100%);
+            color: #e7f6ff;
+        }
+        body.dark .container, body.dark .about, body.dark .service, body.dark .article-card, body.dark .contact-form, body.dark .articles-section, body.dark .portfolio, body.dark .timeline {
+            background: rgba(15,24,44,0.89) !important;
+            color: #e7f6ff;
+            box-shadow: 0 4px 32px #000a22a0;
+        }
+        body.dark nav, body.dark footer {
+            background: linear-gradient(100deg, #202d44 60%, #1c3750 100%) !important;
+            color: #fff !important;
+        }
+        body.dark .service { border-bottom: 5px solid #00b4d8; }
+        body.dark .service-icon { background: #15253a; }
+        body.dark .about-badges .badge { background: #222d42; color: #fff;}
+        body.dark .timeline-dot { background: #00b4d8; }
+        body.dark .timeline-line { background: #0a2a3a; }
+        body.dark .lang-switch, body.dark .mode-switch {background: #232a3f;}
+        body.dark .ai-msg-bot {background: #132341;}
+        body.dark .ai-msg-user {background: #0e2a4a;}
+        /* LANG & MODE SWITCH */
+        .lang-switch, .mode-switch {
+            position: fixed;
+            top: 18px;
+            right: 22px;
+            z-index: 210;
+            display: flex;
+            gap: 0.7rem;
+            background: rgba(255,255,255,0.7);
+            padding: 0.25rem 0.7rem;
+            border-radius: 18px;
+            box-shadow: 0 2px 10px rgba(24,100,171,0.04);
+            backdrop-filter: blur(4px);
+        }
+        .mode-switch {
+            right: 120px;
+            gap: 0.2rem;
+            padding: 0.18rem 0.55rem;
+        }
+        .lang-switch button, .mode-switch button {
+            background: var(--light);
+            color: var(--primary);
+            border: none;
+            border-radius: 18px;
+            padding: 0.37rem 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.19s, color 0.19s, transform 0.19s;
+        }
+        .lang-switch button.active, .lang-switch button:hover, .mode-switch button.active, .mode-switch button:hover {
+            background: var(--primary);
+            color: var(--light);
+            transform: translateY(-2px) scale(1.09);
+        }
+        /* HERO */
+        .hero {
+            background: linear-gradient(100deg, #1864ab 60%, #00b4d8 100%);
+            background-size: 300% 300%;
+            color: var(--light);
+            padding: 2rem 0 1.2rem 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            min-height: 220px;
+            animation: heroBgAnim 16s ease-in-out infinite alternate;
+        }
+        @keyframes heroBgAnim {
+            0%{background-position:0% 50%;}
+            100%{background-position:100% 50%;}
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .hero-avatar {
+            width: 120px; height: 120px; border-radius: 50%; margin-bottom: 0.7rem;
+            border: 4px solid #ffbe3b;
+            box-shadow: 0 2px 18px #00b4d85a;
+            position: relative; overflow: hidden; background: var(--light);
+        }
+        .hero-avatar::after {
+            content: "";
+            position: absolute; inset: 0;
+            border-radius: 50%;
+            border: 3px solid #00b4d8;
+            box-sizing: border-box;
+            animation: borderPulse 2.8s infinite alternate;
+            pointer-events: none;
+            z-index: 2;
+        }
+        @keyframes borderPulse {
+            0%{box-shadow: 0 0 0 0 #00b4d840;}
+            100%{box-shadow: 0 0 0 9px #ffbe3b25;}
+        }
+        .hero-avatar img { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; margin: 5px;}
+        .hero-title {font-family: 'Poppins', 'Montserrat', Arial, sans-serif; font-size: 2.1rem; font-weight: 700; margin: 0; letter-spacing: 1.4px;}
+        .hero-payoff {font-size: 1.08rem; margin: 0.5rem 0 0.7rem 0; color: #ffe29a;}
+        .hero-subtitle {margin: 0.25rem 0 0.8rem 0; font-size: 1.05rem; color: #e6f1fa; font-weight: 500;}
+        .hero-cta {
+            margin-top: 1.05rem;
+            display: flex;
+            gap: 1.07rem;
+            justify-content: center;
+        }
+        .hero-cta a {
+            display: inline-flex;
+            align-items: center; gap: 0.5rem;
+            background: var(--accent2);
+            color: var(--primary);
+            font-weight: 700; border-radius: 22px; padding: 0.7rem 1.3rem;
+            text-decoration: none; font-size: 0.98rem; box-shadow: 0 2px 12px #ffbe3b19;
+            transition: background 0.18s, box-shadow 0.16s, transform 0.16s, color 0.16s;
+            border: none; position: relative; overflow: hidden;
+        }
+        .hero-cta a:hover { background: var(--gradient-rev); color: #fff; box-shadow: 0 4px 18px #00b4d82a; transform: translateY(-2px) scale(1.05);}
+        /* NAVBAR */
+        nav {
+            background: rgba(255,255,255,0.74); /* glassmorphism */
+            box-shadow: 0 2px 10px #0002;
+            display: flex; justify-content: center; gap: 1.25rem;
+            padding: 0.73rem 0; position: sticky; top: 0; z-index: 20;
+            border-bottom: 1px solid #e6eaf1; backdrop-filter: blur(10px);
+            transition: background 0.2s;
+        }
+        nav a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05rem;
+            padding: 0.48rem 1.3rem;
+            border-radius: 18px;
+            transition: background 0.16s, color 0.16s, box-shadow 0.16s;
+            font-family: 'Montserrat', Arial, sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+        nav a.active, nav a:hover {
+            background: var(--gradient);
+            color: var(--light);
+            box-shadow: 0 2px 10px #00b4d82a;
+        }
+        nav a::after {
+            content: "";
+            position: absolute; left: 20%; bottom: 8px;
+            height: 2.5px; border-radius: 2px;
+            background: var(--accent2);
+            width: 0%; transition: width 0.25s;
+        }
+        nav a.active::after, nav a:hover::after {width: 60%;}
+        /* CONTAINER */
+        .container {
+            max-width: 1080px;
+            margin: 1.4rem auto 0 auto;
+            background: var(--glass);
+            padding: 1.7rem 1.4rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            backdrop-filter: var(--frost);
+        }
+        /* ABOUT */
+        .about {
+            display: flex; align-items: center;
+            gap: 2.0rem; flex-wrap: wrap;
+            background: linear-gradient(80deg,#e7f6ff 70%,#eafffa50 100%);
+            border-radius: 18px; box-shadow: 0 2px 14px #00b4d81a;
+            margin-bottom: 1.8rem;
+        }
+        .about-col {flex:1;}
+        .about-text {
+            font-size: 1.09rem; color: #23365c;
+            background: rgba(0,180,216,0.06);
+            border-radius: 16px; padding: 0.7rem 1.1rem;
+            box-shadow: 0 2px 14px #005fa314;
+            line-height: 1.7; font-family: 'Fira Code', 'Nunito', Arial, sans-serif;
+        }
+        .about-badges {margin: 0.8rem 0;}
+        .badge {
+            display:inline-block; background: #d0ecff; color: #1864ab; font-size: 0.89rem; font-weight: 700; border-radius: 10px;
+            padding: 0.25em 0.95em; margin: 0.13em 0.22em 0.13em 0; box-shadow: 0 1px 4px #00b4d81a;
+            font-family: 'Nunito',Arial,sans-serif; letter-spacing: 0.5px;
+        }
+        /* TIMELINE */
+        .timeline {margin: 0.7rem 0;}
+        .timeline-item {display:flex; align-items: flex-start; margin-bottom:1.05rem;}
+        .timeline-dot {
+            width: 18px; height: 18px; border-radius: 50%; background: #ffbe3b; margin-right: 0.7rem; border:2px solid #00b4d8;
+            flex-shrink: 0;
+        }
+        .timeline-line {
+            width:2px; background: #d0ecff; height: 100%; margin-left:7px; margin-right:1.2rem; flex-shrink:0;
+        }
+        .timeline-content {flex:1;}
+        .timeline-title {font-weight:700; color: #1864ab;}
+        .timeline-period {font-size:0.9em; color:#888; margin-bottom:0.12em;}
+        /* SECTION TITLE */
+        .section-title {
+            font-size: 1.45rem; margin-bottom: 0.85rem; color: var(--primary);
+            font-family: 'Montserrat', 'Poppins', Arial, sans-serif;
+            font-weight: 700; letter-spacing: 1px;
+            border-left: 6px solid var(--accent2); padding-left: 0.8rem;
+            background: linear-gradient(90deg,#e7f6ff 80%,transparent 100%);
+        }
+        /* SERVICES */
+        .services {
+            display: flex; flex-wrap: wrap; gap: 1.2rem; margin-bottom: 2.0rem; justify-content: center;
+        }
+        .service {
+            flex: 1 1 230px; background: var(--light);
+            padding: 1.6rem 1.1rem 1.4rem 1.1rem;
+            border-radius: 20px; box-shadow: 0 8px 24px #1864ab1a, 0 2px 8px #1864ab13;
+            text-align: left; min-width: 200px; max-width: 300px; display: flex; flex-direction: column; align-items: flex-start;
+            position: relative; overflow: hidden; border-bottom: 5px solid var(--accent2);
+            transition: transform 0.16s, box-shadow 0.19s, border 0.19s, background 0.19s;
+            animation: fadeInUp 0.8s both; background: linear-gradient(120deg,#fff 80%,#e0f7fa55 100%);
+        }
+        .service:hover {
+            transform: translateY(-8px) scale(1.03) rotate(-2deg);
+            box-shadow: 0 15px 38px #1864ab22, 0 2px 16px #1864ab1c;
+            border-bottom: 5px solid #00b4d8; background: linear-gradient(120deg,#eef6ff 80%,#e0f7fa99 100%);
+        }
+        .service-icon {
+            font-size: 2.25rem; color: var(--primary); margin-bottom: 1.12rem;
+            background: var(--light); border-radius: 12px; box-shadow: 0 2px 10px #1864ab20;
+            padding: 0.5rem; display: inline-block; position: relative; z-index: 2;
+            transition: color 0.19s, transform 0.17s; animation: pulseIcon 2.5s infinite;
+        }
+        .service:hover .service-icon { color: var(--accent2); transform: scale(1.13) rotate(-7deg); animation: none;}
+        @keyframes pulseIcon {0%{box-shadow: 0 0 0 0 #ffbe3b2b;} 70%{box-shadow: 0 0 0 12px #ffbe3b00;} 100%{box-shadow: 0 0 0 0 #ffbe3b00;}}
+        @keyframes fadeInUp {from { opacity:0; transform: translateY(25px);} to { opacity:1; transform: translateY(0);}}
+        /* PORTFOLIO SLIDER */
+        .portfolio {margin:2.7rem 0 1.7rem 0;}
+        .portfolio-slider {display:flex; overflow-x:auto; gap:1.2rem; padding-bottom:1rem;}
+        .portfolio-card {
+            flex: 0 0 320px; background: linear-gradient(100deg,#fff 80%,#e0f7fa 100%);
+            border-radius: 18px; box-shadow: 0 4px 18px #1864ab10;
+            padding:1.15rem 1rem 1.15rem 1rem; display:flex; flex-direction:column; align-items:flex-start;
+            transition:box-shadow 0.17s,transform 0.16s;
+            border-left:5px solid var(--accent2); min-height:180px; position:relative;
+        }
+        .portfolio-card:hover {box-shadow:0 12px 26px #00b4d830; transform:scale(1.04) translateY(-3px);}
+        .portfolio-img {width:100%; height:130px; object-fit:cover; border-radius:12px; margin-bottom:0.9rem;}
+        .portfolio-title {font-weight:700; color:var(--primary); font-size:1.08rem;}
+        .portfolio-tags {margin:0.3rem 0;}
+        .portfolio-tag {font-size:0.81em; background:#e7f6ff; color:#1864ab; border-radius:7px; padding:0.13em 0.7em; margin-right:0.23em;}
+        /* ARTICLES */
+        .articles-section {
+            margin-top: 2.2rem;
+            background: linear-gradient(120deg, #f4f6f8 60%, #e0f7fa 100%);
+            border-radius: 18px; box-shadow: 0 6px 24px #1864ab19; padding: 1.3rem 1.1rem 1.5rem 1.1rem;
+        }
+        .articles-list {display: flex; flex-direction: column; gap: 1.2rem; margin-top: 0.7rem;}
+        .article-card {
+            background: var(--light); border-radius: 13px;
+            box-shadow: 0 2px 12px #1864ab17; padding: 0.9rem 0.9rem;
+            border-left: 6px solid var(--accent2); position: relative; animation: fadeInUp 0.7s;
+            display: flex; align-items: flex-start; gap: 1rem; min-height: 90px; transition: box-shadow 0.17s,transform 0.17s;
+        }
+        .article-thumb {width:70px; height:70px; border-radius:11px; object-fit:cover; box-shadow:0 1px 7px #00b4d82a;}
+        .article-content {flex:1;}
+        .article-title {font-size: 1.08rem; font-weight: 700; color: var(--primary); margin-bottom: 0.19rem; letter-spacing: 0.3px;}
+        .article-meta {font-size: 0.98rem; color: #888; margin-bottom: 0.12rem;}
+        .article-desc {color: #333; font-size: 1.01rem;}
+        .article-card:hover {box-shadow:0 8px 22px #ffbe3b17; transform:scale(1.03);}
+        /* CONTACT */
+        .contact-form {
+            display: flex; flex-direction: column; gap: 1.1rem; max-width: 440px; margin: 0 auto;
+            background: rgba(0,180,216,0.050); border-radius: 16px; box-shadow: 0 2px 12px #1864ab17;
+            padding: 1.6rem 1.1rem 1.2rem 1.1rem; animation: fadeInUp 1s;
+        }
+        .contact-form input, .contact-form textarea {
+            padding: 0.83rem; border: 1.5px solid #cfd8dc; border-radius: 8px; font-size: 1.01rem;
+            background: #f8fafc; transition: border 0.2s, box-shadow 0.2s;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {border: 1.5px solid var(--primary); outline: none; box-shadow: 0 2px 8px #00b4d829;}
+        .contact-form input.valid, .contact-form textarea.valid {border-color: var(--success);}
+        .contact-form input.invalid, .contact-form textarea.invalid {border-color: var(--danger);}
+        .contact-form button {
+            background: var(--gradient); color: var(--light); border: none; border-radius: 8px;
+            padding: 0.82rem; font-size: 1.07rem; font-weight: bold; cursor: pointer;
+            transition: background 0.16s, box-shadow 0.16s, transform 0.16s;
+            box-shadow: 0 4px 12px #1864ab1f; display: flex; align-items: center; gap: 0.7rem; justify-content: center;
+        }
+        .contact-form button:hover {background: var(--gradient-rev); box-shadow: 0 7px 22px #00b4d826; transform: translateY(-2px) scale(1.04);}
+        /* FOOTER */
+        footer {
+            text-align: center; padding: 1.3rem 0 0.7rem 0;
+            background: var(--gradient); color: #e2eef7; margin-top: 2.0rem;
+            font-size: 0.97rem; letter-spacing: 0.7px; border-radius: var(--radius) var(--radius) 0 0;
+            box-shadow: 0 -2px 16px #1864ab12; display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+        }
+        .footer-social {display: flex; gap: 1.1rem; justify-content: center; margin-bottom: 0.15rem;}
+        .footer-social a {color: var(--accent2); font-size: 1.25rem; background: rgba(255,255,255,0.10); border-radius: 50%; padding: 0.38rem; transition: background 0.2s, color 0.2s, transform 0.2s; text-decoration: none;}
+        .footer-social a:hover {background: var(--light); color: var(--primary); transform: scale(1.17);}
+        @media (max-width: 1100px) {.container { padding: 1.1rem; } .services { gap: 1.0rem; } .lang-switch { right: 6px; }}
+        @media (max-width: 900px) {.about { flex-direction: column; gap: 1.2rem; padding: 1.2rem 0.3rem; } .about-text { font-size: 0.99rem; color: #1a1a2e; line-height: 1.6;} .hero-title { font-size: 1.27rem; } .lang-switch { top: 8px;}}
+        @media (max-width: 700px) {
+            .services { flex-direction: column; gap: 0.8rem; align-items: stretch;}
+            nav { flex-direction: column; gap: 0.25rem;}
+            .container { padding: 0.3rem;}
+            .section-title { font-size: 1.01rem; padding-left: 0.45rem;}
+            .hero-avatar { width: 70px; height: 70px;}
+            .hero-avatar img { width: 60px; height: 60px;}
+            .lang-switch { top: 3px; right: 2px; }
+            .portfolio-card {min-width:220px;}
+        }
+    </style>
+</head>
+<body>
+    <!-- LANG & MODE SWITCH -->
+    <div class="lang-switch">
+        <button class="active" id="lang-it">IT</button>
+        <button id="lang-en">EN</button>
+    </div>
+    <div class="mode-switch">
+        <button id="mode-light" title="Light mode"><i class="fa-regular fa-sun"></i></button>
+        <button id="mode-dark" title="Dark mode"><i class="fa-regular fa-moon"></i></button>
+    </div>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-avatar"><img src="foto-profilo.jpg" alt="Michele Siddi"></div>
+            <h1 class="hero-title" id="hero-title">Michele Siddi</h1>
+            <div class="hero-payoff" id="hero-payoff">Trasformo idee in soluzioni digitali.</div>
+            <p class="hero-subtitle" id="hero-subtitle">Esperto IT &bull; Ingegnere del Software &bull; Cybersecurity Specialist</p>
+            <div class="hero-cta">
+                <a href="#contact" id="cta-contact"><i class="fa-solid fa-paper-plane"></i> Contattami</a>
+                <a href="https://www.linkedin.com/in/michele-siddi-776172131/" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+            </div>
+        </div>
+    </section>
+    <!-- NAVBAR -->
+    <nav>
+        <a href="#about" class="active" id="nav-about">Chi sono</a>
+        <a href="#services" id="nav-services">Servizi</a>
+        <a href="#portfolio" id="nav-portfolio">Portfolio</a>
+        <a href="#articles" id="nav-articles">Articoli</a>
+        <a href="#contact" id="nav-contact">Contatti</a>
+    </nav>
+    <div class="container">
+        <!-- CHI SONO -->
+        <section id="about" class="about">
+            <div class="about-col">
+                <div class="about-text" id="about-text">
+                    <h2 class="section-title" id="about-title">Chi sono</h2>
+                    <p id="about-desc">
+                        Ciao! Mi chiamo <strong>Michele Siddi</strong>, sono laureato in Informatica e manager con passione per tecnologia e innovazione.<br>
+                        Da oltre 10 anni aiuto aziende e persone a raggiungere risultati digitali concreti, lavorando in ambienti internazionali e dinamici (Amazon, PMI, startup).<br>
+                        <span style="font-weight:600;">Mi occupo di sviluppo software, sicurezza, cloud e strategie digitali.</span>
+                    </p>
+                    <div class="about-badges" id="about-badges">
+                        <span class="badge">Cloud</span>
+                        <span class="badge">AI</span>
+                        <span class="badge">Cybersecurity</span>
+                        <span class="badge">Manager</span>
+                        <span class="badge">DevOps</span>
+                        <span class="badge">Web/App</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-col">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div>
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-line"></div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Amazon (Manager, IT & Cybersecurity)</div>
+                            <div class="timeline-period">2015 - oggi</div>
+                            <div>Lavoro in ruoli di responsabilità e innovazione tecnologica.</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div><div class="timeline-dot"></div></div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Consulente IT / Freelance</div>
+                            <div class="timeline-period">2011 - oggi</div>
+                            <div>Aiuto PMI, startup e privati con soluzioni su misura.</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div><div class="timeline-dot"></div></div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">Laurea Informatica</div>
+                            <div class="timeline-period">2008 - 2011</div>
+                            <div>Università di Cagliari</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- SERVIZI -->
+        <section id="services">
+            <h2 class="section-title" id="services-title">Servizi</h2>
+            <div class="services" id="services-list">
+                <div class="service">
+                    <span class="service-icon"><i class="fa-solid fa-laptop-code"></i></span>
+                    <h3 id="service-web">Sviluppo Siti Web</h3>
+                    <p id="service-web-desc">
+                        Siti moderni, responsive e ottimizzati, su misura per identità e business. Esperienze digitali di alto livello.
+                    </p>
+                </div>
+                <div class="service">
+                    <span class="service-icon"><i class="fa-solid fa-mobile-screen-button"></i></span>
+                    <h3 id="service-app">Sviluppo App</h3>
+                    <p id="service-app-desc">
+                        App mobile & web, intuitive e personalizzate per aziende e progetti innovativi.
+                    </p>
+                </div>
+                <div class="service">
+                    <span class="service-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                    <h3 id="service-cyber">Cybersecurity & Consulenza IT</h3>
+                    <p id="service-cyber-desc">
+                        Difesa, assessment, compliance, formazione e soluzioni di sicurezza per aziende e professionisti.
+                    </p>
+                </div>
+                <div class="service">
+                    <span class="service-icon"><i class="fa-solid fa-chart-line"></i></span>
+                    <h3 id="service-marketing">Strategia Digitale & Marketing</h3>
+                    <p id="service-marketing-desc">
+                        Strategie complete: SEO, social, content, automazioni per far crescere la tua attività.
+                    </p>
+                </div>
+                <div class="service">
+                    <span class="service-icon"><i class="fa-solid fa-lightbulb"></i></span>
+                    <h3 id="service-strategy">Consulenza Strategica</h3>
+                    <p id="service-strategy-desc">
+                        Analisi, pianificazione e supporto alla trasformazione digitale e all’innovazione.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- PORTFOLIO -->
+        <section id="portfolio" class="portfolio">
+            <h2 class="section-title" id="portfolio-title">Portfolio</h2>
+            <div class="portfolio-slider" id="portfolio-slider">
+                <div class="portfolio-card">
+                    <img class="portfolio-img" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80" alt="Progetto 1">
+                    <div class="portfolio-title">E-commerce Cloud</div>
+                    <div class="portfolio-tags">
+                        <span class="portfolio-tag">AWS</span>
+                        <span class="portfolio-tag">React</span>
+                        <span class="portfolio-tag">Node.js</span>
+                    </div>
+                    <div>Realizzazione piattaforma e-commerce scalabile, integrazione pagamenti e automazioni.</div>
+                </div>
+                <div class="portfolio-card">
+                    <img class="portfolio-img" src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=400&q=80" alt="Progetto 2">
+                    <div class="portfolio-title">App Sicurezza Mobile</div>
+                    <div class="portfolio-tags">
+                        <span class="portfolio-tag">Android</span>
+                        <span class="portfolio-tag">Cybersecurity</span>
+                    </div>
+                    <div>App per la protezione dei dati personali e aziendali con alert in tempo reale.</div>
+                </div>
+                <div class="portfolio-card">
+                    <img class="portfolio-img" src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=400&q=80" alt="Progetto 3">
+                    <div class="portfolio-title">AI Chatbot per Customer Care</div>
+                    <div class="portfolio-tags">
+                        <span class="portfolio-tag">AI</span>
+                        <span class="portfolio-tag">Python</span>
+                    </div>
+                    <div>Chatbot intelligente per supporto clienti, integrazione con CRM e automazioni FAQ.</div>
+                </div>
+            </div>
+        </section>
+        <!-- ARTICOLI -->
+        <section id="articles" class="articles-section">
+            <h2 class="section-title" id="articles-title">Articoli e Paper</h2>
+            <div class="articles-list" id="articles-list">
+                <div class="article-card">
+                    <img class="article-thumb" src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="Cybersecurity">
+                    <div class="article-content">
+                        <div class="article-title">Come la Cybersecurity sta cambiando il mondo aziendale</div>
+                        <div class="article-meta">15 settembre 2025</div>
+                        <div class="article-desc">Minacce moderne e strategie per proteggere la tua azienda.</div>
+                    </div>
+                </div>
+                <div class="article-card">
+                    <img class="article-thumb" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="AI">
+                    <div class="article-content">
+                        <div class="article-title">Intelligenza Artificiale: opportunità e rischi</div>
+                        <div class="article-meta">1 agosto 2025</div>
+                        <div class="article-desc">Vantaggi e sfide dell’AI nella digitalizzazione delle imprese.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- CONTATTI -->
+        <section id="contact">
+            <h2 class="section-title" id="contact-title">Contatti</h2>
+            <form class="contact-form" autocomplete="off">
+                <input type="text" name="name" placeholder="Il tuo nome" required>
+                <input type="email" name="email" placeholder="La tua email" required>
+                <textarea name="message" rows="5" placeholder="Il tuo messaggio" required></textarea>
+                <button type="submit"><i class="fa-solid fa-paper-plane"></i> Invia messaggio</button>
+            </form>
+        </section>
+    </div>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-social">
+            <a href="mailto:michelesiddi.ms@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/michele-siddi-776172131/" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+        <div id="footer-copyright">
+            &copy; 2025 Michele Siddi. Tutti i diritti riservati.
+        </div>
+        <div style="font-size:0.98em; color:#c9e0f7;">Realizzato con &hearts; da Michele Siddi</div>
+    </footer>
+    <!-- AI AGENT -->
+    <!-- Inserisci qui lo snippet AI agent fornito prima -->
+    <!-- ... (vedi risposta precedente per integrare l'agente AI) ... -->
+    <script>
+        // Multilingua dinamica
+        const translations = {
+            it: {
+                heroPayoff: "Trasformo idee in soluzioni digitali.",
+                heroSubtitle: "Esperto IT &bull; Ingegnere del Software &bull; Cybersecurity Specialist",
+                ctaContact: '<i class="fa-solid fa-paper-plane"></i> Contattami',
+                nav: ["Chi sono", "Servizi", "Portfolio", "Articoli", "Contatti"],
+                aboutTitle: "Chi sono",
+                aboutDesc: `Ciao! Mi chiamo <strong>Michele Siddi</strong>, sono laureato in Informatica e manager con passione per tecnologia e innovazione.<br>
+                        Da oltre 10 anni aiuto aziende e persone a raggiungere risultati digitali concreti, lavorando in ambienti internazionali e dinamici (Amazon, PMI, startup).<br>
+                        <span style="font-weight:600;">Mi occupo di sviluppo software, sicurezza, cloud e strategie digitali.</span>`,
+                servicesTitle: "Servizi",
+                services: [
+                    {title:"Sviluppo Siti Web",desc:"Siti moderni, responsive e ottimizzati, su misura per identità e business. Esperienze digitali di alto livello."},
+                    {title:"Sviluppo App",desc:"App mobile & web, intuitive e personalizzate per aziende e progetti innovativi."},
+                    {title:"Cybersecurity & Consulenza IT",desc:"Difesa, assessment, compliance, formazione e soluzioni di sicurezza per aziende e professionisti."},
+                    {title:"Strategia Digitale & Marketing",desc:"Strategie complete: SEO, social, content, automazioni per far crescere la tua attività."},
+                    {title:"Consulenza Strategica",desc:"Analisi, pianificazione e supporto alla trasformazione digitale e all’innovazione."}
+                ],
+                portfolioTitle:"Portfolio",
+                articlesTitle: "Articoli e Paper",
+                contactTitle: "Contatti",
+                contactForm: {
+                    name: "Il tuo nome",
+                    email: "La tua email",
+                    message: "Il tuo messaggio",
+                    button: "Invia messaggio"
+                },
+                footer: "&copy; 2025 Michele Siddi. Tutti i diritti riservati."
+            },
+            en: {
+                heroPayoff: "Turning ideas into digital solutions.",
+                heroSubtitle: "IT Expert &bull; Software Engineer &bull; Cybersecurity Specialist",
+                ctaContact: '<i class="fa-solid fa-paper-plane"></i> Contact me',
+                nav: ["About", "Services", "Portfolio", "Articles", "Contact"],
+                aboutTitle: "About Me",
+                aboutDesc: `Hi! My name is <strong>Michele Siddi</strong>, I hold a degree in Computer Science and I'm a manager passionate about technology and innovation.<br>
+                        For over 10 years I help companies and individuals achieve real digital results, working in international and dynamic environments (Amazon, SMEs, startups).<br>
+                        <span style="font-weight:600;">I deal with software development, cybersecurity, cloud and digital strategy.</span>`,
+                servicesTitle: "Services",
+                services: [
+                    {title:"Web Development",desc:"Modern, responsive, SEO-optimized sites tailored to your brand and business. High-level digital experiences."},
+                    {title:"App Development",desc:"Mobile & web apps, intuitive and customized for companies and innovative projects."},
+                    {title:"Cybersecurity & IT Consulting",desc:"Defense, assessment, compliance, training and security solutions for companies and professionals."},
+                    {title:"Digital Strategy & Marketing",desc:"Complete strategies: SEO, social, content, automation to grow your business."},
+                    {title:"Strategic Consulting",desc:"Analysis, planning and support for digital transformation and innovation."}
+                ],
+                portfolioTitle:"Portfolio",
+                articlesTitle: "Articles & Papers",
+                contactTitle: "Contact",
+                contactForm: {
+                    name: "Your name",
+                    email: "Your email",
+                    message: "Your message",
+                    button: "Send message"
+                },
+                footer: "&copy; 2025 Michele Siddi. All rights reserved."
+            }
+        };
+        function setLang(lang) {
+            document.getElementById('hero-payoff').innerHTML = translations[lang].heroPayoff;
+            document.getElementById('hero-subtitle').innerHTML = translations[lang].heroSubtitle;
+            document.getElementById('cta-contact').innerHTML = translations[lang].ctaContact;
+            const navIds = ['nav-about','nav-services','nav-portfolio','nav-articles','nav-contact'];
+            navIds.forEach((id, i) => { document.getElementById(id).textContent = translations[lang].nav[i]; });
+            document.getElementById('about-title').textContent = translations[lang].aboutTitle;
+            document.getElementById('about-desc').innerHTML = translations[lang].aboutDesc;
+            document.getElementById('services-title').textContent = translations[lang].servicesTitle;
+            const serviceIds = [['service-web', 'service-web-desc'],['service-app', 'service-app-desc'],['service-cyber', 'service-cyber-desc'],['service-marketing', 'service-marketing-desc'],['service-strategy', 'service-strategy-desc']];
+            serviceIds.forEach(([idTitle, idDesc], i) => {
+                document.getElementById(idTitle).textContent = translations[lang].services[i].title;
+                document.getElementById(idDesc).textContent = translations[lang].services[i].desc;
+            });
+            document.getElementById('portfolio-title').textContent = translations[lang].portfolioTitle;
+            document.getElementById('articles-title').textContent = translations[lang].articlesTitle;
+            document.getElementById('contact-title').textContent = translations[lang].contactTitle;
+            const contactForm = document.querySelector('.contact-form');
+            contactForm.elements['name'].placeholder = translations[lang].contactForm.name;
+            contactForm.elements['email'].placeholder = translations[lang].contactForm.email;
+            contactForm.elements['message'].placeholder = translations[lang].contactForm.message;
+            contactForm.querySelector('button').innerHTML = `<i class="fa-solid fa-paper-plane"></i> ${translations[lang].contactForm.button}`;
+            document.getElementById('footer-copyright').innerHTML = translations[lang].footer;
+            document.getElementById('lang-it').classList.toggle('active', lang === 'it');
+            document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+            document.documentElement.lang = lang;
+        }
+        document.getElementById('lang-it').onclick = () => setLang('it');
+        document.getElementById('lang-en').onclick = () => setLang('en');
+        setLang('it');
+        // Navbar active state
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (current && link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href').slice(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    e.preventDefault();
+                    window.scrollTo({top: targetSection.offsetTop - 82,behavior: 'smooth'});
+                }
+            });
+        });
+        // Contact form validation
+        const cForm = document.querySelector('.contact-form');
+        cForm.querySelectorAll('input,textarea').forEach(el=>{
+            el.addEventListener('input',function(){
+                if(this.checkValidity()) {this.classList.add('valid');this.classList.remove('invalid');}
+                else {this.classList.remove('valid');this.classList.add('invalid');}
+            });
+        });
+        cForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert(document.documentElement.lang === 'en' ? "Your message has been sent! I'll reply as soon as possible." : "Il tuo messaggio è stato inviato! Ti risponderò al più presto.");
+            this.reset();
+            this.querySelectorAll('.valid').forEach(f=>f.classList.remove('valid'));
+        });
+        // Dark/Light mode
+        const body = document.body;
+        document.getElementById('mode-dark').onclick = () => {body.classList.add('dark');localStorage.setItem('theme','dark');};
+        document.getElementById('mode-light').onclick = () => {body.classList.remove('dark');localStorage.setItem('theme','light');};
+        if(localStorage.getItem('theme')==='dark') body.classList.add('dark');
+    </script>
+    <!-- AGENT AI - inserisci qui lo snippet "ai-agent.html" fornito prima -->
+
+    <style>
+#ai-chat-launcher {
+    position: fixed;
+    bottom: 26px;
+    right: 26px;
+    z-index: 9999;
+    background: linear-gradient(100deg, #1864ab 70%, #00b4d8 100%);
+    color: #fff;
+    border-radius: 50%;
+    width: 58px; height: 58px;
+    border: none;
+    box-shadow: 0 2px 18px #00b4d85a;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#ai-chat-launcher:hover { background: linear-gradient(90deg,#00b4d8 70%,#ffbe3b 100%); transform: scale(1.09);}
+#ai-chat-popup {
+    position: fixed;
+    bottom: 96px;
+    right: 26px;
+    width: 350px;
+    max-width: 96vw;
+    height: 430px;
+    background: rgba(255,255,255,0.98);
+    border-radius: 20px;
+    box-shadow: 0 8px 46px #1864ab33;
+    border: 1.5px solid #00b4d84c;
+    z-index: 9999;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    animation: ai-popup-in 0.26s;
+}
+@keyframes ai-popup-in { from {opacity:0; transform: translateY(30px) scale(0.93);} to {opacity:1; transform: none;} }
+#ai-chat-header {
+    background: linear-gradient(100deg, #1864ab 60%, #00b4d8 100%);
+    color: #fff;
+    padding: 0.9rem 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 700;
+    font-family: 'Poppins', 'Montserrat', Arial, sans-serif;
+    font-size: 1.07rem;
+    letter-spacing: 0.5px;
+}
+#ai-chat-header button {
+    background: none; border: none; color:#fff; font-size: 1.3rem; cursor: pointer;
+    transition: color 0.2s;
+}
+#ai-chat-header button:hover { color: #ffbe3b;}
+#ai-chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.1rem 1rem 0.7rem 1rem;
+    background: transparent;
+    font-size: 0.98rem;
+    font-family: 'Nunito', 'Fira Code', 'Roboto', Arial, sans-serif;
+    color: #181a2a;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+.ai-msg-user, .ai-msg-bot {
+    padding: 0.65rem 0.9rem;
+    border-radius: 13px;
+    max-width: 85%;
+    word-break: break-word;
+    box-shadow: 0 2px 8px #1864ab15;
+}
+.ai-msg-user { align-self: flex-end; background: #e7f6ff;}
+.ai-msg-bot { align-self: flex-start; background: #1864ab11; border-left: 4px solid #00b4d8;}
+#ai-chat-form {
+    display: flex; gap: 0.5rem; padding: 0.7rem; background: #f8fbff;
+    border-top: 1px solid #e1edf6;
+}
+#ai-chat-form input {
+    flex: 1;
+    border: 1.3px solid #cfd8dc;
+    border-radius: 8px;
+    padding: 0.7rem;
+    font-size: 1.01rem;
+    font-family: inherit;
+    transition: border 0.2s;
+}
+#ai-chat-form input:focus { border-color: #00b4d8;}
+#ai-chat-form button {
+    background: linear-gradient(100deg, #1864ab 60%, #00b4d8 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.7rem 1.2rem;
+    font-size: 1.13rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.18s;
+    display: flex; align-items: center; gap: 0.7rem;
+}
+#ai-chat-form button:hover { background: var(--gradient-rev); transform: scale(1.07);}
+@media (max-width: 500px) {
+    #ai-chat-popup { width: 99vw; right: 0; border-radius: 0; }
+}
+</style>
+<button id="ai-chat-launcher" title="AI Assistant"><i class="fa-solid fa-robot"></i></button>
+<div id="ai-chat-popup">
+    <div id="ai-chat-header">
+        <span>AI IT Assistant</span>
+        <button id="ai-chat-close" title="Chiudi">&times;</button>
+    </div>
+    <div id="ai-chat-messages">
+        <div class="ai-msg-bot"><b>Benvenuto!</b> Sono il tuo assistente AI per tematiche IT.E' come se stessi parlando con la versione digitale di Michele Siddi.<br>Ponimi domande su sviluppo software, sicurezza informatica, cloud, automazione, AI, e altro ancora.</div>
+    </div>
+    <form id="ai-chat-form" autocomplete="off">
+        <input type="text" id="ai-chat-input" placeholder="Scrivi la tua domanda IT..." required />
+        <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+    </form>
+</div>
+<script>
+const launcher = document.getElementById('ai-chat-launcher');
+const popup = document.getElementById('ai-chat-popup');
+const closeBtn = document.getElementById('ai-chat-close');
+launcher.onclick = () => { popup.style.display = 'flex'; }
+closeBtn.onclick = () => { popup.style.display = 'none'; }
+window.addEventListener('keydown', e => { if(e.key === "Escape") popup.style.display = 'none'; });
+
+const form = document.getElementById('ai-chat-form');
+const input = document.getElementById('ai-chat-input');
+const messages = document.getElementById('ai-chat-messages');
+form.onsubmit = async e => {
+    e.preventDefault();
+    const question = input.value.trim();
+    if(!question) return;
+    addMsg(question, 'user');
+    input.value = '';
+    addMsg('<i class="fa-solid fa-spinner fa-spin"></i> Sto pensando...', 'bot');
+    messages.scrollTop = messages.scrollHeight;
+
+    // CHIAMA QUI IL TUO ENDPOINT BACKEND CHE USA OPENAI
+    // Esempio di chiamata fetch:
+    try {
+        const response = await fetch('http://localhost:5000/api/ai', {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                question: question
+            })
+        });
+        const data = await response.json();
+        messages.removeChild(messages.lastChild);
+        addMsg(data.answer, 'bot');
+        messages.scrollTop = messages.scrollHeight;
+    } catch (e) {
+        messages.removeChild(messages.lastChild);
+        addMsg("Errore di connessione. Riprova.", 'bot');
+    }
+};
+
+function addMsg(txt, who) {
+    const div = document.createElement('div');
+    div.className = who === 'user' ? 'ai-msg-user' : 'ai-msg-bot';
+    div.innerHTML = txt;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+}
+</script>
+</body>
+</html>
