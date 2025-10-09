@@ -4,12 +4,15 @@ Modern, responsive portfolio website for Michele Siddi - IT Expert, Software Eng
 
 ## Features
 
-- 🎨 **Modern Design**: Clean, professional design with glassmorphism effects
+- 🎨 **Modern 2025 Design**: Clean, professional design with glassmorphism effects and vibrant colors
 - 🌓 **Dark Mode**: Full dark mode support with smooth transitions
 - 🌐 **Multilingual**: Support for Italian (IT) and English (EN)
-- 🤖 **AI Chatbot**: Interactive AI assistant for IT-related questions
+- 🤖 **Working AI Chatbot**: Interactive AI assistant with real backend API integration
+- 📄 **Clickable Articles**: Full article detail pages with rich content
 - 📱 **Responsive**: Fully responsive design for all devices
 - ⚡ **Performance**: Optimized CSS with external stylesheet
+- ✨ **Modern Fonts**: Inter for body text, Poppins for headings
+- 🎯 **Micro-interactions**: Smooth animations and hover effects throughout
 
 ## Project Structure
 
@@ -42,11 +45,39 @@ The `styles.css` file is organized into logical sections:
    - Timeline
    - Services
    - Portfolio
-   - Articles
+   - Articles (with clickable cards and hover effects)
    - Contact Form
    - Footer
    - AI Chatbot
 5. **Responsive Design** - Media queries for different screen sizes
+
+## API Documentation
+
+### Chat Endpoint
+
+**POST** `/api/chat`
+
+Request body:
+```json
+{
+  "question": "Come posso migliorare la cybersecurity?"
+}
+```
+
+Response:
+```json
+{
+  "answer": "La cybersecurity è fondamentale nel 2025...",
+  "timestamp": "2025-10-09T20:53:39.273Z"
+}
+```
+
+The chatbot includes smart keyword matching for IT-related topics:
+- Cybersecurity
+- Cloud computing
+- AI/Machine Learning
+- Web/App development
+- DevOps & Automation
 
 ## Technologies Used
 
