@@ -28,7 +28,7 @@ html {
 }
 
 body {
-    font-family: 'Nunito', 'Roboto', Arial, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     margin: 0;
     background: radial-gradient(circle at 70% 10%, #e7f6ff 0%, #f8fbff 100%);
     color: var(--dark);
@@ -284,7 +284,7 @@ nav a {
     padding: 0.48rem 1.3rem;
     border-radius: 18px;
     transition: background 0.16s, color 0.16s, box-shadow 0.16s;
-    font-family: 'Montserrat', Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     position: relative;
     overflow: hidden;
 }
@@ -419,7 +419,7 @@ nav a:hover::after {
     font-size: 1.45rem;
     margin-bottom: 0.85rem;
     color: var(--primary);
-    font-family: 'Montserrat', 'Poppins', Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700;
     letter-spacing: 1px;
     border-left: 6px solid var(--accent2);
@@ -576,6 +576,12 @@ nav a:hover::after {
     margin-top: 0.7rem;
 }
 
+.article-card-link {
+    text-decoration: none;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
 .article-card {
     background: var(--light);
     border-radius: 13px;
@@ -588,7 +594,7 @@ nav a:hover::after {
     align-items: flex-start;
     gap: 1rem;
     min-height: 90px;
-    transition: box-shadow 0.17s, transform 0.17s;
+    transition: box-shadow 0.3s, transform 0.3s, border-left-color 0.3s;
 }
 
 .article-thumb {
@@ -622,9 +628,21 @@ nav a:hover::after {
     font-size: 1.01rem;
 }
 
-.article-card:hover {
-    box-shadow: 0 8px 22px #ffbe3b17;
-    transform: scale(1.03);
+.article-card-link:hover .article-card {
+    box-shadow: 0 8px 32px rgba(24, 100, 171, 0.25);
+    transform: translateY(-4px);
+    border-left-color: var(--accent);
+}
+
+.article-title i {
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.article-card-link:hover .article-title i {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 /* Contact Form */
