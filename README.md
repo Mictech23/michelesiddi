@@ -4,21 +4,29 @@ Modern, responsive portfolio website for Michele Siddi - IT Expert, Software Eng
 
 ## Features
 
-- 🎨 **Modern Design**: Clean, professional design with glassmorphism effects
+- 🎨 **Modern 2025 Design**: Clean, professional design with glassmorphism effects and vibrant colors
 - 🌓 **Dark Mode**: Full dark mode support with smooth transitions
 - 🌐 **Multilingual**: Support for Italian (IT) and English (EN)
-- 🤖 **AI Chatbot**: Interactive AI assistant for IT-related questions
+- 🤖 **Working AI Chatbot**: Interactive AI assistant with real backend API integration
+- 📄 **Clickable Articles**: Full article detail pages with rich content
 - 📱 **Responsive**: Fully responsive design for all devices
 - ⚡ **Performance**: Optimized CSS with external stylesheet
+- ✨ **Modern Fonts**: Inter for body text, Poppins for headings
+- 🎯 **Micro-interactions**: Smooth animations and hover effects throughout
 
 ## Project Structure
 
 ```
 .
-├── index.html          # Main HTML file
-├── styles.css          # Dedicated CSS stylesheet
-├── foto-profilo.jpg    # Profile picture
-└── README.md          # This file
+├── index.html              # Main HTML file
+├── styles.css              # Dedicated CSS stylesheet
+├── server.js               # Backend API server (Node.js/Express)
+├── package.json            # Node.js dependencies
+├── foto-profilo.jpg        # Profile picture
+├── articles/               # Article detail pages
+│   ├── cybersecurity-2025.html
+│   └── intelligenza-artificiale.html
+└── README.md              # This file
 ```
 
 ## CSS Architecture
@@ -37,19 +45,53 @@ The `styles.css` file is organized into logical sections:
    - Timeline
    - Services
    - Portfolio
-   - Articles
+   - Articles (with clickable cards and hover effects)
    - Contact Form
    - Footer
    - AI Chatbot
 5. **Responsive Design** - Media queries for different screen sizes
 
+## API Documentation
+
+### Chat Endpoint
+
+**POST** `/api/chat`
+
+Request body:
+```json
+{
+  "question": "Come posso migliorare la cybersecurity?"
+}
+```
+
+Response:
+```json
+{
+  "answer": "La cybersecurity è fondamentale nel 2025...",
+  "timestamp": "2025-10-09T20:53:39.273Z"
+}
+```
+
+The chatbot includes smart keyword matching for IT-related topics:
+- Cybersecurity
+- Cloud computing
+- AI/Machine Learning
+- Web/App development
+- DevOps & Automation
+
 ## Technologies Used
 
+### Frontend
 - HTML5
 - CSS3 (with CSS Variables)
 - JavaScript (Vanilla)
 - Font Awesome Icons
-- Google Fonts (Roboto, Montserrat, Poppins, Fira Code, Nunito)
+- Google Fonts (Inter, Poppins, Fira Code)
+
+### Backend
+- Node.js
+- Express.js
+- CORS middleware
 
 ## Features Details
 
@@ -58,7 +100,9 @@ The `styles.css` file is organized into logical sections:
 - Animated popup with smooth transitions
 - Message history display
 - Error handling with graceful fallback
-- Backend API integration ready (endpoint: `/api/ai`)
+- **Working backend API** (Node.js/Express on port 5000)
+- Endpoint: `/api/chat` with mock AI responses
+- Smart keyword matching for IT-related questions
 
 ### Dark Mode
 - Persistent theme selection (localStorage)
@@ -82,6 +126,7 @@ Breakpoints:
 
 ## Local Development
 
+### Frontend Only
 1. Clone the repository
 2. Open `index.html` in a web browser
 3. Or use a local server:
@@ -89,6 +134,21 @@ Breakpoints:
    python3 -m http.server 8080
    ```
 4. Navigate to `http://localhost:8080`
+
+### With Backend (AI Chatbot)
+1. Install Node.js dependencies:
+   ```bash
+   npm install
+   ```
+2. Start the backend server:
+   ```bash
+   npm start
+   ```
+3. Open `index.html` in a browser or serve it:
+   ```bash
+   python3 -m http.server 8080
+   ```
+4. The chatbot will now connect to `http://localhost:5000/api/chat`
 
 ## Customization
 
