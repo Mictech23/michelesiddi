@@ -8,6 +8,11 @@ author: Michele Siddi
 email: michelesiddi.ms@gmail.com
 linkedin: https://www.linkedin.com/in/michele-siddi-776172131/
 
+# Analytics (uncomment and add your tracking ID)
+# google_analytics: UA-XXXXXXXXX-X
+# or use GA4:
+# google_analytics: G-XXXXXXXXXX
+
 # Build settings
 markdown: kramdown
 permalink: /blog/:year/:month/:day/:title/

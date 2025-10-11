@@ -1,32 +1,62 @@
 # Michele Siddi - Portfolio Website
 
-Modern, responsive portfolio website for Michele Siddi - IT Expert, Software Engineer, and Cybersecurity Specialist.
+Modern, responsive portfolio website with **dynamic blog system** for Michele Siddi - IT Expert, Software Engineer, and Cybersecurity Specialist.
 
-## Features
+## 🚀 Features
 
+### Portfolio & Design
 - 🎨 **Modern 2025 Design**: Clean, professional design with glassmorphism effects and vibrant colors
 - 🌓 **Dark Mode**: Full dark mode support with smooth transitions
 - 🌐 **Multilingual**: Support for Italian (IT) and English (EN)
-- 🤖 **Working AI Chatbot**: Interactive AI assistant with real backend API integration
-- 📄 **Clickable Articles**: Full article detail pages with rich content
-- 📱 **Responsive**: Fully responsive design for all devices
-- ⚡ **Performance**: Optimized CSS with external stylesheet
+- 📱 **Fully Responsive**: Optimized for desktop, tablet, and mobile devices
+- ⚡ **Performance Optimized**: Lazy loading images, minified CSS
 - ✨ **Modern Fonts**: Inter for body text, Poppins for headings
-- 🎯 **Micro-interactions**: Smooth animations and hover effects throughout
+- 🎯 **Micro-interactions**: Smooth animations and hover effects
 
-## Project Structure
+### Blog System (NEW! 🎉)
+- 📝 **Jekyll-Powered Blog**: Markdown-based articles with automatic HTML generation
+- 🔍 **Search Functionality**: Real-time search across all blog posts
+- 🏷️ **Tag System**: Filter articles by categories (Cybersecurity, AI, Tech, etc.)
+- 📊 **Dynamic Homepage**: Latest articles displayed automatically
+- 🔗 **Social Sharing**: Share buttons for LinkedIn, Twitter, Facebook
+- 📰 **RSS Feed**: Automatic feed generation for subscribers
+- 🗺️ **SEO Optimized**: Automatic sitemap, meta tags, structured data (schema.org)
+
+### Backend & Integration
+- 🤖 **Working AI Chatbot**: Interactive AI assistant with real backend API integration
+- 📄 **Article Management**: Easy-to-update Markdown files for blog posts
+- 🔐 **GitHub Pages Compatible**: Static site generation ready for deployment
+
+## 📁 Project Structure
 
 ```
 .
-├── index.html              # Main HTML file
-├── styles.css              # Dedicated CSS stylesheet
+├── index.html              # Main portfolio page (Jekyll-enabled)
+├── blog.html               # Blog listing page with search & filters
+├── styles.css              # Main CSS stylesheet
+├── _config.yml             # Jekyll configuration
+├── Gemfile                 # Ruby dependencies for Jekyll
 ├── server.js               # Backend API server (Node.js/Express)
 ├── package.json            # Node.js dependencies
 ├── foto-profilo.jpg        # Profile picture
-├── articles/               # Article detail pages
+│
+├── _layouts/               # Jekyll layouts
+│   ├── default.html        # Base layout with SEO tags
+│   └── post.html           # Blog post layout
+│
+├── _posts/                 # Blog articles (Markdown)
+│   ├── 2025-01-15-crittografia-internet.md
+│   └── 2025-01-20-tendenze-ai-2025.md
+│
+├── articles/               # Legacy article pages (HTML)
 │   ├── cybersecurity-2025.html
 │   └── intelligenza-artificiale.html
-└── README.md              # This file
+│
+└── _site/                  # Generated static site (auto-generated)
+    ├── index.html
+    ├── blog/
+    ├── feed.xml            # RSS feed
+    └── sitemap.xml         # SEO sitemap
 ```
 
 ## CSS Architecture
@@ -79,23 +109,122 @@ The chatbot includes smart keyword matching for IT-related topics:
 - Web/App development
 - DevOps & Automation
 
-## Technologies Used
+## 🛠️ Technologies Used
 
 ### Frontend
-- HTML5
-- CSS3 (with CSS Variables)
-- JavaScript (Vanilla)
-- Font Awesome Icons
-- Google Fonts (Inter, Poppins, Fira Code)
+- **HTML5** with Jekyll Liquid templating
+- **CSS3** with CSS Variables and modern features
+- **JavaScript (Vanilla)** for interactions
+- **Jekyll** - Static site generator
+- **Markdown** for blog posts
+- **Font Awesome Icons**
+- **Google Fonts** (Inter, Poppins, Fira Code)
 
-### Backend
-- Node.js
-- Express.js
-- CORS middleware
+### Jekyll Plugins
+- `jekyll-feed` - Automatic RSS feed generation
+- `jekyll-seo-tag` - SEO meta tags and Open Graph
+- `jekyll-sitemap` - Automatic sitemap.xml
 
-## Features Details
+### Backend (Optional - for AI Chatbot)
+- **Node.js**
+- **Express.js**
+- **CORS middleware**
 
-### AI Chatbot
+## 🚀 Getting Started
+
+### Prerequisites
+- Ruby 2.7+ (for Jekyll)
+- Bundler gem
+- Node.js 14+ (optional, for AI chatbot)
+
+### Installation & Local Development
+
+#### 1. Clone the repository
+```bash
+git clone https://github.com/Mictech23/michelesiddi.git
+cd michelesiddi
+```
+
+#### 2. Install Jekyll dependencies
+```bash
+bundle install
+```
+
+#### 3. Build and serve the site locally
+```bash
+bundle exec jekyll serve
+```
+
+The site will be available at `http://localhost:4000/michelesiddi/`
+
+#### 4. (Optional) Start the AI chatbot backend
+In a separate terminal:
+```bash
+npm install
+npm start
+```
+
+The API server will run on `http://localhost:5000`
+
+### Building for Production
+```bash
+bundle exec jekyll build
+```
+
+The static site will be generated in the `_site/` directory.
+
+### Deploy to GitHub Pages
+Simply push to the `main` branch. GitHub Pages will automatically build and deploy the Jekyll site.
+
+## ✍️ Adding New Blog Posts
+
+### Create a new post
+
+1. Create a new Markdown file in `_posts/` with the naming format: `YYYY-MM-DD-title.md`
+2. Add front matter at the top:
+
+```markdown
+---
+layout: post
+title: "Your Post Title"
+date: 2025-01-20 14:30:00 +0100
+author: Michele Siddi
+categories: [Category1, Category2]
+tags: [tag1, tag2, tag3]
+image: https://example.com/image.jpg
+description: "Short description for SEO and previews"
+---
+
+Your content here in Markdown format...
+```
+
+3. Write your content using Markdown
+4. Save the file
+5. Build the site: `bundle exec jekyll build`
+6. Push to GitHub
+
+### Markdown Features Supported
+- Headings (H1-H6)
+- Bold, italic, code
+- Lists (ordered and unordered)
+- Links and images
+- Code blocks with syntax highlighting
+- Blockquotes
+- Tables
+
+## 🎯 Features Details
+
+### 📝 Blog System
+- **Markdown-based**: Write posts in simple Markdown format
+- **Automatic processing**: Jekyll converts MD to HTML automatically
+- **SEO optimized**: Meta tags, Open Graph, Twitter Cards, schema.org
+- **Search**: Real-time client-side search across all posts
+- **Tags & Categories**: Filter articles by topic
+- **Social sharing**: Built-in share buttons for major platforms
+- **RSS feed**: Automatic feed generation at `/feed.xml`
+- **Sitemap**: Auto-generated at `/sitemap.xml` for SEO
+
+### 🤖 AI Chatbot
 - Fixed position launcher button
 - Animated popup with smooth transitions
 - Message history display
@@ -104,18 +233,25 @@ The chatbot includes smart keyword matching for IT-related topics:
 - Endpoint: `/api/chat` with mock AI responses
 - Smart keyword matching for IT-related questions
 
-### Dark Mode
+### 🌓 Dark Mode
 - Persistent theme selection (localStorage)
 - Smooth color transitions
 - Optimized contrast ratios
-- All components fully styled
+- All components fully styled (including blog)
 
-### Responsive Design
+### 📱 Responsive Design
 Breakpoints:
 - Desktop: > 1100px
 - Tablet: 900px - 1100px
 - Mobile: < 700px
 - Small Mobile: < 500px
+
+### ⚡ Performance Optimizations
+- Lazy loading images
+- Minified CSS in production
+- Static site generation (fast loading)
+- CDN-ready for images
+- Optimized font loading
 
 ## Browser Support
 
@@ -124,33 +260,15 @@ Breakpoints:
 - Safari (latest)
 - Edge (latest)
 
-## Local Development
+## 🎨 Customization
 
-### Frontend Only
-1. Clone the repository
-2. Open `index.html` in a web browser
-3. Or use a local server:
-   ```bash
-   python3 -m http.server 8080
-   ```
-4. Navigate to `http://localhost:8080`
-
-### With Backend (AI Chatbot)
-1. Install Node.js dependencies:
-   ```bash
-   npm install
-   ```
-2. Start the backend server:
-   ```bash
-   npm start
-   ```
-3. Open `index.html` in a browser or serve it:
-   ```bash
-   python3 -m http.server 8080
-   ```
-4. The chatbot will now connect to `http://localhost:5000/api/chat`
-
-## Customization
+### Site Configuration
+Edit `_config.yml` to customize:
+- Site title, description, URL
+- Author information
+- Social media links
+- Google Analytics ID
+- Jekyll settings
 
 ### Colors
 Edit CSS variables in `styles.css`:
