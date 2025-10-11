@@ -980,3 +980,20 @@ footer {
         border-radius: 0;
     }
 }
+
+/* Image Optimization */
+img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+img[loading="lazy"].loaded,
+img[loading="lazy"]:not([src]) {
+    opacity: 1;
+}
+
+/* WebP Support Check */
+@supports (background-image: -webkit-image-set(url("test.webp") 1x)) or 
+          (background-image: image-set(url("test.webp") 1x)) {
+    /* WebP is supported */
+}

@@ -1,9 +1,34 @@
+---
+layout: default
+title: Michele Siddi - IT Expert, Software Engineer, Cybersecurity Specialist
+description: Portfolio professionale e blog su tecnologia, cybersecurity e innovazione. Sviluppo software, sicurezza informatica, cloud e strategie digitali.
+---
 <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Michele Siddi — IT Expert, Software Engineer, Cybersecurity Specialist</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Portfolio professionale e blog su tecnologia, cybersecurity e innovazione. Sviluppo software, sicurezza informatica, cloud e strategie digitali.">
+    <meta name="keywords" content="Michele Siddi, IT Expert, Software Engineer, Cybersecurity, Cloud, AI, Portfolio, Blog">
+    <meta name="author" content="Michele Siddi">
+    <link rel="canonical" href="https://mictech23.github.io/michelesiddi/">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Michele Siddi - IT Expert & Cybersecurity Specialist">
+    <meta property="og:description" content="Portfolio professionale e blog su tecnologia, cybersecurity e innovazione">
+    <meta property="og:image" content="https://mictech23.github.io/michelesiddi/foto-profilo.jpg">
+    <meta property="og:url" content="https://mictech23.github.io/michelesiddi/">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Michele Siddi - IT Expert & Cybersecurity Specialist">
+    <meta name="twitter:description" content="Portfolio professionale e blog su tecnologia, cybersecurity e innovazione">
+    <meta name="twitter:image" content="https://mictech23.github.io/michelesiddi/foto-profilo.jpg">
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
@@ -167,7 +192,10 @@
         </section>
         <!-- ARTICOLI -->
         <section id="articles" class="articles-section">
-            <h2 class="section-title" id="articles-title">Articoli e Paper</h2>
+            <h2 class="section-title" id="articles-title">Ultimi Articoli</h2>
+            <p style="text-align: center; margin-bottom: 30px; color: #666;">
+                Scopri articoli su tecnologia, cybersecurity, AI e innovazione
+            </p>
             <div class="articles-list" id="articles-list">
                 <a href="articles/cybersecurity-2025.html" class="article-card-link">
                     <div class="article-card">
@@ -188,6 +216,23 @@
                         <div class="article-desc">Vantaggi e sfide dell’AI nella digitalizzazione delle imprese.</div>
                     </div>
                 </div>
+                </a>
+                {% for post in site.posts offset:2 limit:2 %}
+                <a href="{{ post.url | relative_url }}" class="article-card-link">
+                    <div class="article-card">
+                        <img class="article-thumb" src="{{ post.image }}" alt="{{ post.title }}" loading="lazy">
+                        <div class="article-content">
+                            <div class="article-title">{{ post.title }} <i class="fa-solid fa-arrow-right"></i></div>
+                            <div class="article-meta">{{ post.date | date: "%d %B %Y" }}</div>
+                            <div class="article-desc">{{ post.description }}</div>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="{{ '/blog.html' | relative_url }}" style="display: inline-block; padding: 12px 30px; background: var(--primary); color: white; text-decoration: none; border-radius: 25px; font-weight: 600; transition: all 0.3s;">
+                    <i class="fa-solid fa-newspaper"></i> Vedi tutti gli articoli
                 </a>
             </div>
         </section>

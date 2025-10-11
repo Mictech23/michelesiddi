@@ -1,0 +1,46 @@
+# Site Settings
+title: Michele Siddi
+subtitle: IT Expert, Software Engineer, Cybersecurity Specialist
+description: Portfolio professionale e blog su tecnologia, cybersecurity e innovazione
+url: "https://mictech23.github.io"
+baseurl: "/michelesiddi"
+author: Michele Siddi
+email: michelesiddi.ms@gmail.com
+linkedin: https://www.linkedin.com/in/michele-siddi-776172131/
+
+# Build settings
+markdown: kramdown
+permalink: /blog/:year/:month/:day/:title/
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /blog/:year/:month/:day/:title/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Michele Siddi"
+
+# Exclude from processing
+exclude:
+  - node_modules
+  - server.js
+  - package.json
+  - package-lock.json
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+
+# Include
+include:
+  - _posts
