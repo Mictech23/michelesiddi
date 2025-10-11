@@ -1,0 +1,368 @@
+---
+layout: default
+title: Blog
+description: Articoli su tecnologia, cybersecurity, AI e innovazione digitale
+---
+<style>
+    .blog-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+    }
+    .blog-header {
+        text-align: center;
+        margin-bottom: 60px;
+    }
+    .blog-header h1 {
+        color: var(--primary);
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+    .blog-header p {
+        font-size: 1.2rem;
+        color: #666;
+    }
+    body.dark .blog-header p {
+        color: #aaa;
+    }
+    
+    /* Search Bar */
+    .search-container {
+        max-width: 600px;
+        margin: 0 auto 40px;
+    }
+    .search-box {
+        width: 100%;
+        padding: 15px 20px;
+        font-size: 1rem;
+        border: 2px solid #e0e0e0;
+        border-radius: 25px;
+        transition: all 0.3s;
+    }
+    .search-box:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(24, 100, 171, 0.1);
+    }
+    body.dark .search-box {
+        background: #2a2a3a;
+        border-color: #444;
+        color: #fff;
+    }
+    
+    /* Filter Tags */
+    .filter-tags {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+    }
+    .filter-tag {
+        padding: 8px 18px;
+        border: 2px solid var(--primary);
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-weight: 600;
+        color: var(--primary);
+        background: transparent;
+    }
+    .filter-tag:hover, .filter-tag.active {
+        background: var(--primary);
+        color: white;
+    }
+    
+    /* Blog Grid */
+    .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+    .blog-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        transition: all 0.3s;
+        display: flex;
+        flex-direction: column;
+    }
+    body.dark .blog-card {
+        background: #1a1a2a;
+    }
+    .blog-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 30px rgba(24, 100, 171, 0.15);
+    }
+    .blog-card-image {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+    }
+    .blog-card-content {
+        padding: 25px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    .blog-card-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 10px;
+        line-height: 1.3;
+    }
+    .blog-card-meta {
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+    }
+    body.dark .blog-card-meta {
+        color: #aaa;
+    }
+    .blog-card-excerpt {
+        color: #444;
+        margin-bottom: 20px;
+        line-height: 1.6;
+        flex: 1;
+    }
+    body.dark .blog-card-excerpt {
+        color: #ccc;
+    }
+    .blog-card-tags {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 15px;
+    }
+    .blog-card-tag {
+        background: var(--accent2);
+        color: #333;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+    .blog-card-link {
+        color: var(--primary);
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
+    .blog-card-link:hover {
+        text-decoration: underline;
+    }
+    
+    .no-results {
+        text-align: center;
+        padding: 60px 20px;
+        color: #666;
+    }
+    body.dark .no-results {
+        color: #aaa;
+    }
+    
+    .back-home {
+        display: inline-block;
+        margin-bottom: 30px;
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 600;
+    }
+    .back-home:hover {
+        text-decoration: underline;
+    }
+    
+    @media (max-width: 768px) {
+        .blog-grid {
+            grid-template-columns: 1fr;
+        }
+        .blog-header h1 {
+            font-size: 2rem;
+        }
+    }
+</style>
+
+<!-- LANG & MODE SWITCH -->
+<div class="lang-switch">
+    <button class="active" id="lang-it">IT</button>
+    <button id="lang-en">EN</button>
+</div>
+<div class="mode-switch">
+    <button id="btn-light" class="active"><i class="fa-solid fa-sun"></i></button>
+    <button id="btn-dark"><i class="fa-solid fa-moon"></i></button>
+</div>
+
+<div class="blog-container">
+    <a href="{{ '/' | relative_url }}" class="back-home">
+        <i class="fa-solid fa-arrow-left"></i> Torna alla home
+    </a>
+    
+    <div class="blog-header">
+        <h1>Blog</h1>
+        <p>Articoli su tecnologia, cybersecurity, AI e innovazione digitale</p>
+    </div>
+    
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" 
+               id="search-input" 
+               class="search-box" 
+               placeholder="🔍 Cerca articoli...">
+    </div>
+    
+    <!-- Filter Tags -->
+    <div class="filter-tags" id="filter-tags">
+        <button class="filter-tag active" data-tag="all">Tutti</button>
+    </div>
+    
+    <!-- Blog Grid -->
+    <div class="blog-grid" id="blog-grid">
+        {% for post in site.posts %}
+        <article class="blog-card" 
+                 data-tags="{{ post.tags | join: ',' }}" 
+                 data-title="{{ post.title | downcase }}"
+                 data-excerpt="{{ post.description | downcase }}">
+            {% if post.image %}
+            <img src="{{ post.image }}" alt="{{ post.title }}" class="blog-card-image" loading="lazy">
+            {% endif %}
+            <div class="blog-card-content">
+                <h2 class="blog-card-title">{{ post.title }}</h2>
+                <div class="blog-card-meta">
+                    <i class="fa-solid fa-calendar"></i> {{ post.date | date: "%d %B %Y" }} | 
+                    <i class="fa-solid fa-user"></i> {{ post.author }}
+                </div>
+                <div class="blog-card-tags">
+                    {% for tag in post.tags limit:3 %}
+                    <span class="blog-card-tag">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+                <p class="blog-card-excerpt">{{ post.description }}</p>
+                <a href="{{ post.url | relative_url }}" class="blog-card-link">
+                    Leggi l'articolo <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+    
+    <div class="no-results" id="no-results" style="display: none;">
+        <i class="fa-solid fa-search" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.3;"></i>
+        <p>Nessun articolo trovato. Prova con parole chiave diverse.</p>
+    </div>
+</div>
+
+<script>
+    // Dark mode toggle
+    const btnLight = document.getElementById('btn-light');
+    const btnDark = document.getElementById('btn-dark');
+    const body = document.body;
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        body.classList.add('dark');
+        btnDark.classList.add('active');
+        btnLight.classList.remove('active');
+    }
+
+    btnLight.addEventListener('click', () => {
+        body.classList.remove('dark');
+        btnLight.classList.add('active');
+        btnDark.classList.remove('active');
+        localStorage.setItem('theme', 'light');
+    });
+
+    btnDark.addEventListener('click', () => {
+        body.classList.add('dark');
+        btnDark.classList.add('active');
+        btnLight.classList.remove('active');
+        localStorage.setItem('theme', 'dark');
+    });
+
+    // Language switch
+    document.getElementById('lang-it').addEventListener('click', function() {
+        document.getElementById('lang-it').classList.add('active');
+        document.getElementById('lang-en').classList.remove('active');
+    });
+
+    document.getElementById('lang-en').addEventListener('click', function() {
+        document.getElementById('lang-en').classList.add('active');
+        document.getElementById('lang-it').classList.remove('active');
+    });
+
+    // Search and filter functionality
+    const searchInput = document.getElementById('search-input');
+    const blogGrid = document.getElementById('blog-grid');
+    const noResults = document.getElementById('no-results');
+    const blogCards = document.querySelectorAll('.blog-card');
+    const filterTagsContainer = document.getElementById('filter-tags');
+    
+    // Collect all unique tags
+    const allTags = new Set();
+    blogCards.forEach(card => {
+        const tags = card.dataset.tags.split(',').filter(t => t.trim());
+        tags.forEach(tag => allTags.add(tag.trim()));
+    });
+    
+    // Create filter buttons
+    allTags.forEach(tag => {
+        const button = document.createElement('button');
+        button.className = 'filter-tag';
+        button.textContent = tag;
+        button.dataset.tag = tag;
+        filterTagsContainer.appendChild(button);
+    });
+    
+    let currentTag = 'all';
+    
+    // Filter by tag
+    filterTagsContainer.addEventListener('click', (e) => {
+        if (e.target.classList.contains('filter-tag')) {
+            document.querySelectorAll('.filter-tag').forEach(btn => btn.classList.remove('active'));
+            e.target.classList.add('active');
+            currentTag = e.target.dataset.tag;
+            filterArticles();
+        }
+    });
+    
+    // Search functionality
+    searchInput.addEventListener('input', filterArticles);
+    
+    function filterArticles() {
+        const searchTerm = searchInput.value.toLowerCase();
+        let visibleCount = 0;
+        
+        blogCards.forEach(card => {
+            const title = card.dataset.title;
+            const excerpt = card.dataset.excerpt;
+            const tags = card.dataset.tags.toLowerCase();
+            
+            const matchesSearch = !searchTerm || 
+                                  title.includes(searchTerm) || 
+                                  excerpt.includes(searchTerm) ||
+                                  tags.includes(searchTerm);
+            
+            const matchesTag = currentTag === 'all' || 
+                              tags.includes(currentTag.toLowerCase());
+            
+            if (matchesSearch && matchesTag) {
+                card.style.display = 'flex';
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        
+        if (visibleCount === 0) {
+            blogGrid.style.display = 'none';
+            noResults.style.display = 'block';
+        } else {
+            blogGrid.style.display = 'grid';
+            noResults.style.display = 'none';
+        }
+    }
+</script>
